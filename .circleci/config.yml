@@ -5,7 +5,7 @@ jobs:
       - image: circleci/golang:1.12
     steps:
       - checkout
-      - run: apt-get update && apt-get install patch
+      - run: sudo apt-get update && sudo apt-get install -y patch
       - run: curl -sL https://git.io/goreleaser | bash
 workflows:
   version: 2
