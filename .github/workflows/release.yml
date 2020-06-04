@@ -24,7 +24,7 @@ jobs:
       - name: Archive caddy-trap_linux_amd64
         run: |
           mkdir caddy-trap_linux_amd64
-          mv caddy mv caddy-trap_linux_amd64/
+          mv caddy caddy-trap_linux_amd64/
           tar -zcvf ./caddy-trap_linux_amd64.tar.gz ./caddy-trap_linux_amd64
       - name: Create Release
         id: create_release
