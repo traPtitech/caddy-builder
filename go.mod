@@ -1,6 +1,6 @@
 module caddy
 
-go 1.16
+go 1.14
 
 require (
 	github.com/abiosoft/caddy-git v0.0.0-20190703061829-f8cc2f20c9e7
