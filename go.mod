@@ -9,5 +9,5 @@ require (
 	github.com/nicolasazrak/caddy-cache v0.3.4
 	github.com/pquerna/cachecontrol v0.0.0-20180517163645-1555304b9b35 // indirect
 	github.com/pyed/ipfilter v1.1.4
-	github.com/traPtitech/caddy-trap-auth v0.0.0-20190713042100-3e675a3949a0
+	github.com/traPtitech/caddy-trap-auth v0.0.0-20210404090743-cd148ae4d63f
 )
