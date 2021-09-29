@@ -5,8 +5,8 @@ RUN go get -u github.com/caddyserver/xcaddy/cmd/xcaddy
 ENV GOOS=linux
 ENV GOARCH=amd64
 
-RUN xcaddy build v2.4.3 \
-  --with github.com/traPtitech/caddy-trap-auth/v2@v2.4.3 \
+RUN xcaddy build v2.4.5 \
+  --with github.com/traPtitech/caddy-trap-auth/v2@v2.4.5 \
   --with github.com/caddy-dns/lego-deprecated
 
 FROM alpine:3.14.2
