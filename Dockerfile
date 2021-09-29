@@ -15,4 +15,4 @@ WORKDIR /app
 
 COPY --from=build /app ./
 
-ENTRYPOINT ["./caddy"]
+ENTRYPOINT ["./caddy run --config /etc/caddy/Caddyfile"]
