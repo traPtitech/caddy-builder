@@ -6,7 +6,7 @@ ENV GOOS=linux
 ENV GOARCH=amd64
 
 RUN xcaddy build v2.4.5 \
-  --with github.com/traPtitech/caddy-trap-auth/v2@v2.4.5 \
+  --with github.com/traPtitech/caddy-trap-auth/v2@v2.4.5+20211114 \
   --with github.com/caddy-dns/lego-deprecated
 
 FROM alpine:3.14.2
