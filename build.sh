@@ -2,7 +2,7 @@
 
 set -eux
 
-go get -u github.com/caddyserver/xcaddy/cmd/xcaddy
+go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
 
 export GOOS=linux
 export GOARCH=amd64
