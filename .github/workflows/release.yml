@@ -7,29 +7,37 @@ on:
     branches-ignore:
       - '**'
 
-env:
-  IMAGE_NAME: caddy
-
 jobs:
   make-dist:
     runs-on: ubuntu-latest
     steps:
-      - name: Set IMAGE_TAG env
-        run: echo "IMAGE_TAG=${GITHUB_REF:10}" >> $GITHUB_ENV
       - uses: actions/checkout@v2
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
+      - uses: actions/setup-go@v2
         with:
-          registry: ghcr.io
-          username: traptitech
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build and push
-        uses: docker/build-push-action@v2
+          go-version: 1.16
+      - run: ./build.sh
+      - name: Archive caddy-trap_linux_amd64
+        run: |
+          mkdir caddy-trap_linux_amd64
+          mv caddy caddy-trap_linux_amd64/
+          tar -zcvf ./caddy-trap_linux_amd64.tar.gz ./caddy-trap_linux_amd64
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          context: .
-          push: true
-          tags: |
-            ghcr.io/traptitech/${{ env.IMAGE_NAME }}:latest
-            ghcr.io/traptitech/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Upload caddy-trap_linux_amd64.tar.gz
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./caddy-trap_linux_amd64.tar.gz
+          asset_name: caddy-trap_linux_amd64.tar.gz
+          asset_content_type: application/x-gzip
