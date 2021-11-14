@@ -6,6 +6,6 @@ go get -u github.com/caddyserver/xcaddy/cmd/xcaddy
 
 export GOOS=linux
 export GOARCH=amd64
-xcaddy build v2.4.5 \
-    --with github.com/traPtitech/caddy-trap-auth/v2@v2.4.5+20211114 \
+xcaddy build v2.4.6 \
+    --with github.com/traPtitech/caddy-trap-auth/v2@v2.4.6 \
     --with github.com/caddy-dns/lego-deprecated
