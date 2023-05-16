@@ -11,8 +11,12 @@ jobs:
   make-dist:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-go@v2
+      - name: Set CADDY_VERSION env
+        # refs/tags/v2.*.*
+        run: echo "CADDY_VERSION=$(echo ${GITHUB_REF:10})" >> $GITHUB_ENV
+
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v4
         with:
           go-version: 1.17
       - run: bash ./build.sh
